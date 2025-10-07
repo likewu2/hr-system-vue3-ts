@@ -36,7 +36,7 @@ const login = async () => {
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
       <div class="text-center mb-8">
         <h1 class="text-2xl font-bold text-gray-800">HR 管理系统</h1>
-        <p class="text-gray-500 mt-2">泛微OA风格原型</p>
+        <p class="text-gray-500 mt-2">OA风格原型</p>
       </div>
 
       <form @submit.prevent="login">

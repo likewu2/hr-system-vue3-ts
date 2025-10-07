@@ -58,6 +58,13 @@ export const useHRStore = defineStore('hr', {
       })
       this.failedQueue = []
     },
+    login(user) {
+      this.user = user
+      this.token = user.token
+      //this.refreshToken = user.token
+      localStorage.setItem('hr_token', user.token)
+      //localStorage.setItem('hr_refresh_token', user.token)
+    },
     logout(): void {
       this.user = null
       this.token = null

@@ -40,9 +40,16 @@ export const api = {
   getUsers: (): Promise<User[]> => request('/users'),
   getOrgChart: (): Promise<OrgNode> => request('/org/chart'),
   getAttendance: (): Promise<AttendanceRecord[]> => request('/attendance/monthly'),
+  
   getOnboardingList: (): Promise<OnboardingItem[]> => request('/onboarding'),
+  createOnboarding: (data) => request('/onboarding', { method: 'POST', body: JSON.stringify(data) }),
+
   getContracts: (): Promise<Contract[]> => request('/contracts'),
-  getApprovals: (): Promise<ApprovalItem[]> => request('/approvals')
+  signContract: (id) => request(`/contracts/${id}/sign`, { method: 'POST' }),
+
+  getApprovals: (): Promise<ApprovalItem[]> => request('/approvals'),
+  approveItem: (id) => request(`/approvals/${id}/approve`, { method: 'POST' }),
+  rejectItem: (id) => request(`/approvals/${id}/reject`, { method: 'POST' })
 }
 
 import { useHRStore } from '@/stores/useHRStore'

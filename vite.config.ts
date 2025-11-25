@@ -10,7 +10,10 @@ export default defineConfig({
     }
   },
   server: {
+    host: '::',
     port: 3000,
-    open: true
+    open: false,
+    //allowedHosts: ['m2ddns.pvtool.com'],
+    allowedHosts: true,
   }
 })

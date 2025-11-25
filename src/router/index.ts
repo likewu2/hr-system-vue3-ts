@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useHRStore } from '../stores/useHRStore'
 
 const routes = [
+  { path: '/pverp', component: () => import('../AppPverp.vue'), meta: { public: true } },
   { path: '/login', component: () => import('../views/AuthLogin.vue'), meta: { public: true } },
   { path: '/', component: () => import('../views/Dashboard.vue') },
   { path: '/employees', component: () => import('../views/Employees.vue') },

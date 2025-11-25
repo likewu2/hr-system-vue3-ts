@@ -18,7 +18,7 @@ export default {
       // Now that LABjs is loaded, we can use $LAB
       $LAB.setGlobalDefaults({AppendTo: 'body'});
 
-      var isomorphicDir='http://m2ddns.pvtool.com:8080/web/org.openbravo.userinterface.smartclient/isomorphic/';
+      var isomorphicDir='http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/';
       var isc = window.isc ? window.isc : {};
 
       function OBStartApplication() {
@@ -30,10 +30,10 @@ export default {
       }
 
       const script4 = document.createElement('script');
-      script4.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.userinterface.smartclient/isomorphic/ISC_Combined.uncompressed.js';
+      script4.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_Combined.js';
       document.head.appendChild(script4);
       const script5 = document.createElement('script');
-      script5.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.userinterface.smartclient/isomorphic/ISC_History.uncompressed.js';
+      script5.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_History.js';
       document.head.appendChild(script5);
       const script6 = document.createElement('script');
       script6.src = 'http://m2ddns.pvtool.com:8080/com.pvtool.erp.client.kernel/OBCLKER_Kernel/StaticResources?_appName=OB3&_skinVersion=Default';
@@ -43,6 +43,9 @@ export default {
       console.error('Failed to load LAB.js');
     };
     document.head.appendChild(script2);
+    const script3 = document.createElement('script');
+    script3.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.kernel/js/BigDecimal-all-1.0.1.min.js';
+    document.head.appendChild(script3);
     
     (function () {
       var b = document.documentElement;

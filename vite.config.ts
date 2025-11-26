@@ -15,5 +15,13 @@ export default defineConfig({
     open: false,
     //allowedHosts: ['m2ddns.pvtool.com'],
     allowedHosts: true,
+    proxy: {
+      '/com.pvtool.erp.client.kernel': {
+        target: 'http://m2ddns.pvtool.com:8080',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/com.pvtool.erp.client.kernel/, '/'),
+      }
+    }
   }
 })

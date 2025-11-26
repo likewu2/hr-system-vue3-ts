@@ -2,69 +2,43 @@
 export default {
   mounted() {
     document.title = 'PV ERP';
-    
-    const link1 = document.createElement('link');
-    link1.rel = 'stylesheet';
-    link1.href = 'http://m2ddns.pvtool.com:8080/com.pvtool.erp.client.kernel/OBCLKER_Kernel/StyleSheetResources?_appName=OB3&_skinVersion=Default&_cssDataUri=true';
-    document.head.appendChild(link1);
-    
-    const script1 = document.createElement('script');
-    script1.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.kernel/js/scopeleaks.min.js';
-    document.head.appendChild(script1);
-    const script3 = document.createElement('script');
-    script3.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.kernel/js/BigDecimal-all-1.0.1.min.js';
-    document.head.appendChild(script3);
-    const script2 = document.createElement('script');
-    script2.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.client.kernel/js/LAB.min.js';
-    script2.onload = () => {
-      // Now that LABjs is loaded, we can use $LAB
-      $LAB.setGlobalDefaults({AppendTo: 'body'});
+  },
+  data() {
+    return {
+      scriptCode: `
+        <script>
+        window.onerror = function indexErrorHandler(errorMsg, url, lineNumber) {
+          var msg = errorMsg + ' - ' + url + ':' + lineNumber;
+          document.body.children[0].children[0].removeChild(document.getElementById('OBLoadingDiv'));
+          alert(msg);
+        };
 
-      var isomorphicDir='http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/';
-      var isc = window.isc ? window.isc : {};
+        // Now that LABjs is loaded, we can use $LAB
+        $LAB.setGlobalDefaults({AppendTo: 'body'});
 
-      function OBStartApplication() {
-        OB.Layout.initialize();
-        OB.Layout.draw();
-        OB.Layout.ViewManager.createAddStartTab();
-        document.body.removeChild(document.getElementById('OBLoadingDiv'));
-        OB.GlobalHiddenForm = document.forms.OBGlobalHiddenForm;
-      }
+        var isomorphicDir='/web/com.pvtool.erp.userinterface.smartclient/isomorphic/';
+        var isc = window.isc ? window.isc : {};
 
-      const script4 = document.createElement('script');
-      script4.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_Combined.js';
-      document.body.appendChild(script4);
-      const script5 = document.createElement('script');
-      script5.src = 'http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_History.js';
-      document.body.appendChild(script5);
-      const script6 = document.createElement('script');
-      script6.src = 'http://m2ddns.pvtool.com:8080/com.pvtool.erp.client.kernel/OBCLKER_Kernel/StaticResources?_appName=OB3&_skinVersion=Default';
-      document.body.appendChild(script6);
-      script6.onload = () => {
-        const script7 = document.createElement('script');
-        script7.src = 'http://m2ddns.pvtool.com:8080/web/js/gen/80e40aef8f33a75acf366e7e33497c33.js';
-        document.body.appendChild(script7);
-      };
-      
+        function OBStartApplication() {
+          OB.Layout.initialize();
+          OB.Layout.draw();
+          OB.Layout.ViewManager.createAddStartTab();
+          document.body.removeChild(document.getElementById('OBLoadingDiv'));
+          OB.GlobalHiddenForm = document.forms.OBGlobalHiddenForm;
+        }
+        <\/script>
+        <script type="text/javascript" charset="UTF-8"
+          src="/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_Combined.js">
+          <\/script>
+        <script type="text/javascript" charset="UTF-8"
+          src="/web/com.pvtool.erp.userinterface.smartclient/isomorphic/ISC_History.js">
+          <\/script>
+        <script type="text/javascript" charset="UTF-8"
+          src="/com.pvtool.erp.client.kernel/OBCLKER_Kernel/StaticResources?_appName=OB3&_skinVersion=Default">
+          <\/script>
+      `,
     };
-    script2.onerror = () => {
-      console.error('Failed to load LAB.js');
-    };
-    document.head.appendChild(script2);
-    
-    (function () {
-      var b = document.documentElement;
-      b.setAttribute('data-useragent',  navigator.userAgent);
-      b.setAttribute('data-platform', navigator.platform );
-      b.className += ((!!('ontouchstart' in window) || !!('onmsgesturechange' in window))?' touch':'');
-    }());
-
-    window.onerror = function indexErrorHandler(errorMsg, url, lineNumber) {
-      var msg = errorMsg + ' - ' + url + ':' + lineNumber;
-      document.body.children[0].children[0].removeChild(document.getElementById('OBLoadingDiv'));
-      alert(msg);
-    };
-  }
+  },
 }
 </script>
 
@@ -72,6 +46,7 @@ export default {
   <div class="OBLoadingPromptModalMask" id="OBLoadingDiv">
     <div class="OBCenteredBox">
         <table>
+          <tbody>
             <tr>
                 <td>
                     <span class="OBLoadingPromptLabel">LOADING...</span>
@@ -80,9 +55,11 @@ export default {
                     <img width="220" height="16" src="http://m2ddns.pvtool.com:8080/web/com.pvtool.erp.userinterface.smartclient/openbravo/skins/Default/com.pvtool.erp.client.application/images/system/windowLoading.gif"/>
                 </td>
             </tr>
+          </tbody>
         </table>
     </div>
   </div>
+  <div v-html="scriptCode"></div>
   <iframe name="background_target" id="background_target" height="0" width="0" style="display:none;"></iframe>
   <form name="OBGlobalHiddenForm" method="post" action="blank.html" target="background_target">
   </form>

@@ -45,4 +45,19 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
+    }
+
+    public Employee authenticate(String username, String password) {
+        // 简化的认证逻辑，实际项目中应该使用密码加密
+        List<Employee> employees = employeeRepository.findAll();
+        for (Employee employee : employees) {
+            if (employee.getEmail().equals(username) && "123456".equals(password)) {
+                return employee;
+            }
+        }
+        return null;
+    }
 }

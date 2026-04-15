@@ -33,6 +33,7 @@ public class Employee {
     private String phone;
     private String address;
     private String status; // 在职、离职、试用
+    private String role; // 用户角色
 
     // 构造函数
     public Employee() {}
@@ -44,6 +45,7 @@ public class Employee {
         this.position = position;
         this.entryDate = entryDate;
         this.status = "在职";
+        this.role = "USER";
     }
 
     // Getters and Setters
@@ -73,4 +75,7 @@ public class Employee {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

@@ -10,7 +10,9 @@ const routes = [
   { path: '/attendance', component: () => import('../views/Attendance.vue') },
   { path: '/onboarding', component: () => import('../views/Onboarding.vue') },
   { path: '/contracts', component: () => import('../views/Contracts.vue') },
-  { path: '/approvals', component: () => import('../views/Approvals.vue') }
+  { path: '/approvals', component: () => import('../views/Approvals.vue') },
+  { path: '/warehouse', component: () => import('../views/Warehouse.vue') },
+  { path: '/warehouse/:id', component: () => import('../views/WarehouseDetail.vue') }
 ]
 
 const router = createRouter({

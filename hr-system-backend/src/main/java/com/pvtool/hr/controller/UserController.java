@@ -15,14 +15,14 @@ import java.util.List;
 public class UserController {
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAll();
+    public ResponseEntity<List<Employee>> getAllUsers() {
+        List<Employee> users = employeeService.findAll();
         return ResponseEntity.ok(users);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        User user = userService.authenticate(request.getUsername(), request.getPassword());
+        Employee user = employeeService.authenticate(request.getUsername(), request.getPassword());
         if (user != null) {
             String token = jwtUtil.generateToken(user);
             return ResponseEntity.ok(new LoginResponse(user.getName(), user.getRole(), token));

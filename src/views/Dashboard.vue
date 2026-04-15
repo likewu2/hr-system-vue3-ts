@@ -50,10 +50,10 @@ onMounted(() => {
         <div class="font-medium">考勤管理</div>
       </router-link>
 
-      <div class="bg-white p-6 rounded-lg shadow text-center opacity-70 cursor-not-allowed">
-        <div class="text-4xl mb-2">💰</div>
-        <div class="font-medium">薪资管理</div>
-      </div>
+      <router-link to="/warehouse" class="bg-white p-6 rounded-lg shadow text-center hover:shadow-lg transition">
+        <div class="text-4xl mb-2">📦</div>
+        <div class="font-medium">档案库房</div>
+      </router-link>
     </div>
   </div>
 </template>

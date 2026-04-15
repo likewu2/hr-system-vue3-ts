@@ -10,7 +10,7 @@ plugins {
     application
 }
 
-group = "com.example"
+group = "com.pvtool"
 version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -26,7 +26,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
 
     // Database
-    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("org.postgresql:postgresql")
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -57,5 +57,5 @@ tasks.withType<Test> {
 }
 
 application {
-    mainClass.set("com.example.hr.HrApplication")
+    mainClass.set("com.pvtool.hr.HrApplication")
 }
